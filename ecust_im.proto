@@ -5,8 +5,9 @@ option go_package = "dto";
 
 message UserInfo{
     int64 userId = 1;
-    string nickname = 2;
-    string email = 3;
+    string password = 2;
+    string nickname = 3;
+    string email = 4;
 }
 
 message GroupInfo{
