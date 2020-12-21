@@ -107,8 +107,8 @@ message MsgHead{
     MsgType msgType = 1;
     int64 toId = 2;
     enum MsgType{
-        Friend = 0;
-        Group = 1;
+        TFriend = 0;
+        TGroup = 1;
     }
 }
 message MsgBody{
@@ -129,7 +129,7 @@ message Packet{
         Msg msg = 102;
     }
     enum PacketType{
-        Request = 0;
-        Msg = 1;
+        TRequest = 0;
+        TMsg = 1;
     }
 }
