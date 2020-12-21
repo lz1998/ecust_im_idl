@@ -1,0 +1,142 @@
+syntax = "proto3";
+
+package dto;
+option go_package = "dto";
+
+message UserInfo{
+    int64 userId = 1;
+    string nickname = 2;
+    string email = 3;
+}
+
+message GroupInfo{
+    int64 groupId = 1;
+    string groupName = 2;
+    int64 ownerId = 3;
+}
+
+// 注册
+message RegisterReq{
+    string username = 1;
+    string password = 2;
+}
+message RegisterResp{
+    bool ok = 1;
+    string msg = 2;
+    UserInfo userInfo = 3;
+}
+
+// 登陆
+message LoginReq{
+    int64 userId = 1;
+    string password = 2;
+}
+message LoginResp{
+    bool ok = 1;
+    string msg = 2;
+    string token = 3;
+}
+
+
+// 设置用户信息
+message SetUserInfoReq{
+    repeated UserInfo userInfos = 1;
+}
+message SetUserInfoResp{
+}
+
+// 获取用户信息
+message GetUserInfoReq{
+    repeated int64 userIds = 1;
+}
+message GetUserInfoResp{
+    repeated UserInfo userInfos = 1;
+}
+
+
+
+// 创建群
+message CreateGroupReq{
+    string groupName = 1;
+}
+message CreateGroupResp{
+    int64 groupId = 1;
+}
+
+// 获取好友列表
+message GetFriendsReq{
+}
+message GetFriendsResp{
+    repeated UserInfo userInfos = 1;
+}
+
+// 获取群列表
+message GetGroupsReq{
+}
+message GetGroupsResp{
+    repeated GroupInfo groupInfos = 1;
+}
+
+// 加群/加好友请求
+message AddReq{
+    repeated int64 userIds = 1;
+    repeated int64 groupIds = 2;
+}
+message AddResp{
+}
+
+// 处理好友/群请求
+message ProcessAddReq{
+    int64 reqId = 1;
+    bool accept = 2;
+}
+message ProcessAddResp{
+}
+
+// 以上为http
+
+// 以下为websocket
+message Request{
+    int64 reqId = 1;
+    RequestType reqType = 2;
+    int64 toId = 3; // 目标userId/groupId
+    enum RequestType{
+        Friend = 0;
+        Group = 1;
+    }
+}
+
+message Elem{
+    string text = 1;
+    string fileUrl = 2;
+    string imageUrl = 3;
+}
+message MsgHead{
+    MsgType msgType = 1;
+    int64 toId = 2;
+    enum MsgType{
+        Friend = 0;
+        Group = 1;
+    }
+}
+message MsgBody{
+    repeated Elem elements = 1;
+}
+
+message Msg{
+    MsgHead msgHead = 1;
+    MsgBody msgBody = 2;
+}
+
+message Packet{
+    int64 timestamp = 1;
+    PacketType packetType = 2;
+    oneof Data{
+        Request request = 101;
+        Msg msg = 102;
+    }
+    enum PacketType{
+        Request = 0;
+        Msg = 1;
+    }
+}
