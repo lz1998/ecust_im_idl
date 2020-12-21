@@ -77,14 +77,6 @@ message GetGroupsResp{
     repeated GroupInfo groupInfos = 1;
 }
 
-// 加群/加好友请求
-message AddReq{
-    repeated int64 userIds = 1;
-    repeated int64 groupIds = 2;
-}
-message AddResp{
-}
-
 // 处理好友/群请求
 message ProcessAddReq{
     int64 reqId = 1;
@@ -128,6 +120,7 @@ message Msg{
     MsgBody msgBody = 2;
 }
 
+// 收到来自客户端的packet时，需要检测权限，是否可以处理请求，是否能发送消息
 message Packet{
     int64 timestamp = 1;
     PacketType packetType = 2;
