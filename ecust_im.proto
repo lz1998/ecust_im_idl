@@ -17,7 +17,7 @@ message GroupInfo{
 
 // 注册
 message RegisterReq{
-    string username = 1;
+    string nickname = 1;
     string password = 2;
 }
 message RegisterResp{
