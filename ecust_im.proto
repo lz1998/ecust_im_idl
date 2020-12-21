@@ -61,7 +61,7 @@ message CreateGroupReq{
     string groupName = 1;
 }
 message CreateGroupResp{
-    int64 groupId = 1;
+    GroupInfo groupInfo = 1;
 }
 
 // 获取好友列表
