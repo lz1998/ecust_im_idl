@@ -43,3 +43,15 @@ CREATE TABLE `ecust_friend`
     UNIQUE KEY `uniq_friend` (`user_a`, `user_b`)
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8mb4 COMMENT ='好友关系';
+
+CREATE TABLE `ecust_request`
+(
+    `req_id`     bigint unsigned NOT NULL PRIMARY KEY AUTO_INCREMENT COMMENT '主键',
+    `req_type`   integer         NOT NULL COMMENT '1-好友，2-群',
+    `from_id`    bigint unsigned NOT NULL COMMENT '请求者ID',
+    `to_id`      bigint unsigned NOT NULL COMMENT '目标ID',
+    `status`     integer         NOT NULL DEFAULT 0 COMMENT '状态 0-未处理，1-同意，2-拒绝',
+    `created_at` timestamp       NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    `updated_at` timestamp       NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间'
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8mb4 COMMENT ='好友关系';
