@@ -94,8 +94,8 @@ message Request{
     RequestType reqType = 2;
     int64 toId = 3; // 目标userId/groupId
     enum RequestType{
-        Friend = 0;
-        Group = 1;
+        TFriend = 0;
+        TGroup = 1;
     }
 }
 
