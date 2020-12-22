@@ -47,7 +47,7 @@ CREATE TABLE `ecust_friend`
 CREATE TABLE `ecust_request`
 (
     `req_id`     bigint unsigned NOT NULL PRIMARY KEY AUTO_INCREMENT COMMENT '主键',
-    `req_type`   integer         NOT NULL COMMENT '1-好友，2-群',
+    `req_type`   integer         NOT NULL COMMENT '0-好友，1-群',
     `from_id`    bigint unsigned NOT NULL COMMENT '请求者ID',
     `to_id`      bigint unsigned NOT NULL COMMENT '目标ID',
     `status`     integer         NOT NULL DEFAULT 0 COMMENT '状态 0-未处理，1-同意，2-拒绝',
