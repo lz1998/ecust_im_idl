@@ -92,7 +92,8 @@ message ProcessAddResp{
 message Request{
     int64 reqId = 1;
     RequestType reqType = 2;
-    int64 toId = 3; // 目标userId/groupId
+    int64 fromId = 3;
+    int64 toId = 4; // 目标userId/groupId
     enum RequestType{
         TFriend = 0;
         TGroup = 1;
@@ -106,7 +107,8 @@ message Elem{
 }
 message MsgHead{
     MsgType msgType = 1;
-    int64 toId = 2;
+    int64 fromId = 2;
+    int64 toId = 3;
     enum MsgType{
         TFriend = 0;
         TGroup = 1;
