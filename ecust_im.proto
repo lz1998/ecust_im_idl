@@ -105,22 +105,16 @@ message Elem{
     string fileUrl = 2;
     string imageUrl = 3;
 }
-message MsgHead{
+
+message Msg{
     MsgType msgType = 1;
     int64 fromId = 2;
     int64 toId = 3;
+    repeated Elem elements = 4;
     enum MsgType{
         TFriend = 0;
         TGroup = 1;
     }
-}
-message MsgBody{
-    repeated Elem elements = 1;
-}
-
-message Msg{
-    MsgHead msgHead = 1;
-    MsgBody msgBody = 2;
 }
 
 // 收到来自客户端的packet时，需要检测权限，是否可以处理请求，是否能发送消息
